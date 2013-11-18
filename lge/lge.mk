@@ -15,13 +15,13 @@
 
 # LGE blob(s) necessary for Mako hardware
 PRODUCT_COPY_FILES := \
-    vendor/lge/mako/lge/libacdbdata.so:system/lib/libacdbdata.so:lge \
-    vendor/lge/mako/lge/libAKM.so:system/lib/libAKM.so:lge \
-    vendor/lge/mako/lge/libcamera_fast_af.so:system/lib/libcamera_fast_af.so:lge \
-    vendor/lge/mako/lge/libmorpho_noise_reduction.so:system/lib/libmorpho_noise_reduction.so:lge \
-    vendor/lge/mako/lge/keymaster.b00:system/vendor/firmware/keymaster/keymaster.b00:lge \
-    vendor/lge/mako/lge/keymaster.b01:system/vendor/firmware/keymaster/keymaster.b01:lge \
-    vendor/lge/mako/lge/keymaster.b02:system/vendor/firmware/keymaster/keymaster.b02:lge \
-    vendor/lge/mako/lge/keymaster.b03:system/vendor/firmware/keymaster/keymaster.b03:lge \
-    vendor/lge/mako/lge/keymaster.mdt:system/vendor/firmware/keymaster/keymaster.mdt:lge
+    vendor/lge/mako/lge/libacdbdata.so:system/lib/libacdbdata.so \
+    vendor/lge/mako/lge/libAKM.so:system/lib/libAKM.so \
+    vendor/lge/mako/lge/libcamera_fast_af.so:system/lib/libcamera_fast_af.so \
+    vendor/lge/mako/lge/libmorpho_noise_reduction.so:system/lib/libmorpho_noise_reduction.so \
+    vendor/lge/mako/lge/keymaster.b00:system/vendor/firmware/keymaster/keymaster.b00 \
+    vendor/lge/mako/lge/keymaster.b01:system/vendor/firmware/keymaster/keymaster.b01 \
+    vendor/lge/mako/lge/keymaster.b02:system/vendor/firmware/keymaster/keymaster.b02 \
+    vendor/lge/mako/lge/keymaster.b03:system/vendor/firmware/keymaster/keymaster.b03 \
+    vendor/lge/mako/lge/keymaster.mdt:system/vendor/firmware/keymaster/keymaster.mdt
 
