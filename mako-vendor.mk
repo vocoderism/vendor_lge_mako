@@ -17,3 +17,4 @@
 $(call inherit-product-if-exists, vendor/lge/mako/broadcom/broadcom.mk)
 $(call inherit-product-if-exists, vendor/lge/mako/lge/lge.mk)
 $(call inherit-product-if-exists, vendor/lge/mako/qcom/qcom.mk)
+$(call inherit-product-if-exists, vendor/lge/mako/others/others.mk)
