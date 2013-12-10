@@ -15,8 +15,6 @@
 
 # Other blob(s) from factory image necessary for Mako hardware
 PRODUCT_COPY_FILES := \
-    vendor/lge/mako/others/libloc_eng.so:system/lib/libloc_eng.so \
-    vendor/lge/mako/others/libloc_core.so:system/lib/libloc_core.so \
     vendor/lge/mako/others/libWVStreamControlAPI_L1.so:system/vendor/lib/libWVStreamControlAPI_L1.so \
     vendor/lge/mako/others/libwvm.so:system/vendor/lib/libwvm.so \
     vendor/lge/mako/others/libwvdrm_L1.so:system/vendor/lib/libwvdrm_L1.so \
