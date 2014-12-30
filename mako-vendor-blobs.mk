@@ -50,6 +50,8 @@ PRODUCT_COPY_FILES += \
     vendor/lge/mako/proprietary/system/etc/firmware/vidc.b03:system/system/etc/firmware/vidc.b03 \
     vendor/lge/mako/proprietary/system/etc/firmware/vidc.mdt:system/system/etc/firmware/vidc.mdt \
     vendor/lge/mako/proprietary/system/etc/firmware/vidc_1080p.fw:system/system/etc/firmware/vidc_1080p.fw \
+    vendor/lge/mako/proprietary/system/etc/firmware/wcd9310/wcd9310_anc.bin:system/system/etc/firmware/wcd9310/wcd9310_anc.bin \
+    vendor/lge/mako/proprietary/system/etc/firmware/wcd9310/wcd9310_mbhc.bin:system/system/etc/firmware/wcd9310/wcd9310_mbhc.bin \
     vendor/lge/mako/proprietary/system/vendor/lib/egl/eglsubAndroid.so:system/system/vendor/lib/egl/eglsubAndroid.so \
     vendor/lge/mako/proprietary/system/vendor/lib/egl/libEGL_adreno.so:system/system/vendor/lib/egl/libEGL_adreno.so \
     vendor/lge/mako/proprietary/system/vendor/lib/egl/libGLESv1_CM_adreno.so:system/system/vendor/lib/egl/libGLESv1_CM_adreno.so \
