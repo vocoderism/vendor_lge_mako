@@ -85,18 +85,18 @@ rm -rf proprietary/*
 # Do the real pulling and copying of files
 
 echo "Making new files appear..."
-for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)'); do
+for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///'); do
     # Ensure we have a target directory
     FILE_DIR=$(dirname $FILE)
-    if [ ! -d proprietary$FILE_DIR ]; then
-        mkdir -p proprietary$FILE_DIR
+    if [ ! -d proprietary/$FILE_DIR ]; then
+        mkdir -p proprietary/$FILE_DIR
     fi
 
     # Pull and copy!
     if [ "$SOURCE" = "adb" ]; then
-      adb pull -p -a $FILE proprietary$FILE
+      adb pull -p -a $FILE proprietary/$FILE
     else
-      cp $SOURCE$FILE proprietary$FILE
+      cp $SOURCE/$FILE proprietary/$FILE
     fi
 done
 
@@ -114,9 +114,9 @@ EOF
 
 # Output some information about what files we expect to have
 
-COUNT=$(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | wc -l) # Provide a nice counter
+COUNT=$(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///' | wc -l) # Provide a nice counter
 LINE_END=" \\" # Provide a nice line ending
-for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)'); do
+for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///'); do
     # Check if we have reached the last line
     COUNT=$((COUNT - 1))
     if [ $COUNT = "0" ]; then
@@ -124,7 +124,7 @@ for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)'); do
     fi
 
     # Do all the outputs
-    echo "    vendor/$VENDOR/$DEVICE/proprietary$FILE:system$FILE$LINE_END" >> $BLOBS_MAKEFILE
+    echo "    vendor/$VENDOR/$DEVICE/proprietary/$FILE:$FILE$LINE_END" >> $BLOBS_MAKEFILE
 done
 
 # And finish up with a clean, generic makefile
