@@ -44,34 +44,23 @@ PRODUCT_COPY_FILES += \
     vendor/lge/mako/proprietary/system/etc/firmware/tzapps.b02:system/etc/firmware/tzapps.b02 \
     vendor/lge/mako/proprietary/system/etc/firmware/tzapps.b03:system/etc/firmware/tzapps.b03 \
     vendor/lge/mako/proprietary/system/etc/firmware/tzapps.mdt:system/etc/firmware/tzapps.mdt \
+    vendor/lge/mako/proprietary/system/etc/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
     vendor/lge/mako/proprietary/system/etc/firmware/vidc.b00:system/etc/firmware/vidc.b00 \
     vendor/lge/mako/proprietary/system/etc/firmware/vidc.b01:system/etc/firmware/vidc.b01 \
     vendor/lge/mako/proprietary/system/etc/firmware/vidc.b02:system/etc/firmware/vidc.b02 \
     vendor/lge/mako/proprietary/system/etc/firmware/vidc.b03:system/etc/firmware/vidc.b03 \
     vendor/lge/mako/proprietary/system/etc/firmware/vidc.mdt:system/etc/firmware/vidc.mdt \
-    vendor/lge/mako/proprietary/system/etc/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
     vendor/lge/mako/proprietary/system/etc/firmware/wcd9310/wcd9310_anc.bin:system/etc/firmware/wcd9310/wcd9310_anc.bin \
     vendor/lge/mako/proprietary/system/etc/firmware/wcd9310/wcd9310_mbhc.bin:system/etc/firmware/wcd9310/wcd9310_mbhc.bin \
-    vendor/lge/mako/proprietary/system/vendor/lib/egl/eglsubAndroid.so:system/vendor/lib/egl/eglsubAndroid.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/egl/libEGL_adreno.so:system/vendor/lib/egl/libEGL_adreno.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/egl/libGLESv1_CM_adreno.so:system/vendor/lib/egl/libGLESv1_CM_adreno.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/egl/libGLESv2_adreno.so:system/vendor/lib/egl/libGLESv2_adreno.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/egl/libplayback_adreno.so:system/vendor/lib/egl/libplayback_adreno.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/egl/libq3dtools_adreno.so:system/vendor/lib/egl/libq3dtools_adreno.so \
     vendor/lge/mako/proprietary/system/lib/hw/flp.msm8960.so:system/lib/hw/flp.msm8960.so \
     vendor/lge/mako/proprietary/system/lib/hw/gps.msm8960.so:system/lib/hw/gps.msm8960.so \
     vendor/lge/mako/proprietary/system/lib/hw/sensors.msm8960.so:system/lib/hw/sensors.msm8960.so \
     vendor/lge/mako/proprietary/system/lib/libacdbdata.so:system/lib/libacdbdata.so \
     vendor/lge/mako/proprietary/system/lib/libacdbloader.so:system/lib/libacdbloader.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libadreno_utils.so:system/vendor/lib/libadreno_utils.so \
     vendor/lge/mako/proprietary/system/lib/libAKM.so:system/lib/libAKM.so \
     vendor/lge/mako/proprietary/system/lib/libaudcal.so:system/lib/libaudcal.so \
     vendor/lge/mako/proprietary/system/lib/libaudioalsa.so:system/lib/libaudioalsa.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libC2D2.so:system/vendor/lib/libC2D2.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libc2d30-a3xx.so:system/vendor/lib/libc2d30-a3xx.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libc2d30.so:system/vendor/lib/libc2d30.so \
     vendor/lge/mako/proprietary/system/lib/libcamera_fast_af.so:system/lib/libcamera_fast_af.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libCB.so:system/vendor/lib/libCB.so \
     vendor/lge/mako/proprietary/system/lib/libchromatix_imx111_default_video.so:system/lib/libchromatix_imx111_default_video.so \
     vendor/lge/mako/proprietary/system/lib/libchromatix_imx111_preview.so:system/lib/libchromatix_imx111_preview.so \
     vendor/lge/mako/proprietary/system/lib/libchromatix_imx111_zsl.so:system/lib/libchromatix_imx111_zsl.so \
@@ -105,29 +94,26 @@ PRODUCT_COPY_FILES += \
     vendor/lge/mako/proprietary/system/lib/libdsutils.so:system/lib/libdsutils.so \
     vendor/lge/mako/proprietary/system/lib/libgemini.so:system/lib/libgemini.so \
     vendor/lge/mako/proprietary/system/lib/libgps.utils.so:system/lib/libgps.utils.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libgsl.so:system/vendor/lib/libgsl.so \
     vendor/lge/mako/proprietary/system/lib/libI420colorconvert.so:system/lib/libI420colorconvert.so \
     vendor/lge/mako/proprietary/system/lib/libidl.so:system/lib/libidl.so \
     vendor/lge/mako/proprietary/system/lib/libimage-jpeg-dec-omx-comp.so:system/lib/libimage-jpeg-dec-omx-comp.so \
     vendor/lge/mako/proprietary/system/lib/libimage-jpeg-enc-omx-comp.so:system/lib/libimage-jpeg-enc-omx-comp.so \
     vendor/lge/mako/proprietary/system/lib/libimage-omx-common.so:system/lib/libimage-omx-common.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libllvm-qcom.so:system/vendor/lib/libllvm-qcom.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libbccQTI.so:system/vendor/lib/libbccQTI.so \
     vendor/lge/mako/proprietary/system/lib/libloc_core.so:system/lib/libloc_core.so \
     vendor/lge/mako/proprietary/system/lib/libloc_eng.so:system/lib/libloc_eng.so \
     vendor/lge/mako/proprietary/system/lib/libmercury.so:system/lib/libmercury.so \
-    vendor/lge/mako/proprietary/system/lib/libmm-color-convertor.so:system/lib/libmm-color-convertor.so \
     vendor/lge/mako/proprietary/system/lib/libmmcamera_faceproc.so:system/lib/libmmcamera_faceproc.so \
     vendor/lge/mako/proprietary/system/lib/libmmcamera_frameproc.so:system/lib/libmmcamera_frameproc.so \
     vendor/lge/mako/proprietary/system/lib/libmmcamera_hdr_lib.so:system/lib/libmmcamera_hdr_lib.so \
     vendor/lge/mako/proprietary/system/lib/libmmcamera_image_stab.so:system/lib/libmmcamera_image_stab.so \
     vendor/lge/mako/proprietary/system/lib/libmmcamera_statsproc31.so:system/lib/libmmcamera_statsproc31.so \
     vendor/lge/mako/proprietary/system/lib/libmmcamera_wavelet_lib.so:system/lib/libmmcamera_wavelet_lib.so \
+    vendor/lge/mako/proprietary/system/lib/libmm-color-convertor.so:system/lib/libmm-color-convertor.so \
     vendor/lge/mako/proprietary/system/lib/libmmipl.so:system/lib/libmmipl.so \
     vendor/lge/mako/proprietary/system/lib/libmmjpeg.so:system/lib/libmmjpeg.so \
     vendor/lge/mako/proprietary/system/lib/libmmjps.so:system/lib/libmmjps.so \
-    vendor/lge/mako/proprietary/system/lib/libmmmpo.so:system/lib/libmmmpo.so \
     vendor/lge/mako/proprietary/system/lib/libmmmpod.so:system/lib/libmmmpod.so \
+    vendor/lge/mako/proprietary/system/lib/libmmmpo.so:system/lib/libmmmpo.so \
     vendor/lge/mako/proprietary/system/lib/libmmstillomx.so:system/lib/libmmstillomx.so \
     vendor/lge/mako/proprietary/system/lib/libmorpho_noise_reduction.so:system/lib/libmorpho_noise_reduction.so \
     vendor/lge/mako/proprietary/system/lib/libnetmgr.so:system/lib/libnetmgr.so \
@@ -136,21 +122,17 @@ PRODUCT_COPY_FILES += \
     vendor/lge/mako/proprietary/system/lib/libqcci_legacy.so:system/lib/libqcci_legacy.so \
     vendor/lge/mako/proprietary/system/lib/libqdi.so:system/lib/libqdi.so \
     vendor/lge/mako/proprietary/system/lib/libqdp.so:system/lib/libqdp.so \
-    vendor/lge/mako/proprietary/system/lib/libqmi.so:system/lib/libqmi.so \
-    vendor/lge/mako/proprietary/system/lib/libqmiservices.so:system/lib/libqmiservices.so \
     vendor/lge/mako/proprietary/system/lib/libqmi_cci.so:system/lib/libqmi_cci.so \
     vendor/lge/mako/proprietary/system/lib/libqmi_client_qmux.so:system/lib/libqmi_client_qmux.so \
     vendor/lge/mako/proprietary/system/lib/libqmi_common_so.so:system/lib/libqmi_common_so.so \
     vendor/lge/mako/proprietary/system/lib/libqmi_csi.so:system/lib/libqmi_csi.so \
     vendor/lge/mako/proprietary/system/lib/libqmi_csvt_srvc.so:system/lib/libqmi_csvt_srvc.so \
     vendor/lge/mako/proprietary/system/lib/libqmi_encdec.so:system/lib/libqmi_encdec.so \
+    vendor/lge/mako/proprietary/system/lib/libqmiservices.so:system/lib/libqmiservices.so \
+    vendor/lge/mako/proprietary/system/lib/libqmi.so:system/lib/libqmi.so \
     vendor/lge/mako/proprietary/system/lib/libQSEEComAPI.so:system/lib/libQSEEComAPI.so \
     vendor/lge/mako/proprietary/system/lib/libril-qc-qmi-1.so:system/lib/libril-qc-qmi-1.so \
     vendor/lge/mako/proprietary/system/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libRSDriver_adreno.so:system/vendor/lib/libRSDriver_adreno.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/librs_adreno.so:system/vendor/lib/librs_adreno.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/librs_adreno_sha1.so:system/vendor/lib/librs_adreno_sha1.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libsc-a3xx.so:system/vendor/lib/libsc-a3xx.so \
     vendor/lge/mako/proprietary/system/lib/libsensor1.so:system/lib/libsensor1.so \
     vendor/lge/mako/proprietary/system/lib/libsensor_reg.so:system/lib/libsensor_reg.so \
     vendor/lge/mako/proprietary/system/lib/libsensor_user_cal.so:system/lib/libsensor_user_cal.so \
@@ -185,8 +167,26 @@ PRODUCT_COPY_FILES += \
     vendor/lge/mako/proprietary/system/vendor/firmware/wcnss.b04:system/vendor/firmware/wcnss.b04 \
     vendor/lge/mako/proprietary/system/vendor/firmware/wcnss.b05:system/vendor/firmware/wcnss.b05 \
     vendor/lge/mako/proprietary/system/vendor/firmware/wcnss.mdt:system/vendor/firmware/wcnss.mdt \
+    vendor/lge/mako/proprietary/system/vendor/lib/egl/eglsubAndroid.so:system/vendor/lib/egl/eglsubAndroid.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/egl/libEGL_adreno.so:system/vendor/lib/egl/libEGL_adreno.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/egl/libGLESv1_CM_adreno.so:system/vendor/lib/egl/libGLESv1_CM_adreno.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/egl/libGLESv2_adreno.so:system/vendor/lib/egl/libGLESv2_adreno.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/egl/libplayback_adreno.so:system/vendor/lib/egl/libplayback_adreno.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/egl/libq3dtools_adreno.so:system/vendor/lib/egl/libq3dtools_adreno.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libadreno_utils.so:system/vendor/lib/libadreno_utils.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libbccQTI.so:system/vendor/lib/libbccQTI.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libC2D2.so:system/vendor/lib/libC2D2.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libc2d30-a3xx.so:system/vendor/lib/libc2d30-a3xx.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libc2d30.so:system/vendor/lib/libc2d30.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libCB.so:system/vendor/lib/libCB.so \
     vendor/lge/mako/proprietary/system/vendor/lib/libdrmdecrypt.so:system/vendor/lib/libdrmdecrypt.so \
     vendor/lge/mako/proprietary/system/vendor/lib/libgeofence.so:system/vendor/lib/libgeofence.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libgsl.so:system/vendor/lib/libgsl.so \
     vendor/lge/mako/proprietary/system/vendor/lib/libizat_core.so:system/vendor/lib/libizat_core.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libllvm-qcom.so:system/vendor/lib/libllvm-qcom.so \
     vendor/lge/mako/proprietary/system/vendor/lib/libloc_api_v02.so:system/vendor/lib/libloc_api_v02.so \
-    vendor/lge/mako/proprietary/system/vendor/lib/libloc_ds_api.so:system/vendor/lib/libloc_ds_api.so
+    vendor/lge/mako/proprietary/system/vendor/lib/libloc_ds_api.so:system/vendor/lib/libloc_ds_api.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/librs_adreno_sha1.so:system/vendor/lib/librs_adreno_sha1.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/librs_adreno.so:system/vendor/lib/librs_adreno.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libRSDriver_adreno.so:system/vendor/lib/libRSDriver_adreno.so \
+    vendor/lge/mako/proprietary/system/vendor/lib/libsc-a3xx.so:system/vendor/lib/libsc-a3xx.so

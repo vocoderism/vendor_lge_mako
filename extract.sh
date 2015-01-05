@@ -85,7 +85,7 @@ rm -rf proprietary/*
 # Do the real pulling and copying of files
 
 echo "Making new files appear..."
-for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///'); do
+for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///' | sort -s); do
     # Ensure we have a target directory
     FILE_DIR=$(dirname $FILE)
     if [ ! -d proprietary/$FILE_DIR ]; then
@@ -114,9 +114,9 @@ EOF
 
 # Output some information about what files we expect to have
 
-COUNT=$(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///' | wc -l) # Provide a nice counter
+COUNT=$(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///' | sort -s | wc -l) # Provide a nice counter
 LINE_END=" \\" # Provide a nice line ending
-for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///'); do
+for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///' | sort -s); do
     # Check if we have reached the last line
     COUNT=$((COUNT - 1))
     if [ $COUNT = "0" ]; then
