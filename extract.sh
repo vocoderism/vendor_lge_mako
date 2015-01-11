@@ -1,20 +1,38 @@
 #!/bin/sh
 set -e
-cd $(dirname $0)
+SCRIPT_NAME=$(basename $0)
 
 # Kick off with generic configuration
 
 VENDOR=lge
 DEVICE=mako
+echo "# VENDOR=$VENDOR"
+echo "# DEVICE=$DEVICE"
+
+# Do a bit more generic configuration
+
+if [ -d ../../../vendor/$VENDOR/$DEVICE ]; then
+    REPO_ROOT=../../../vendor/$VENDOR/$DEVICE
+elif [ -d ../../vendor/$VENDOR/$DEVICE ]; then
+    REPO_ROOT=../../vendor/$VENDOR/$DEVICE
+else
+    REPO_ROOT=$(dirname $0)
+fi
+REPO_ROOT=$(readlink -m $REPO_ROOT)
+echo "# REPO_ROOT=$REPO_ROOT"
 
 # Follow up with even more generic configuration
 
-VENDOR_MAKEFILE=$DEVICE-vendor.mk
-BLOBS_MAKEFILE=$DEVICE-vendor-blobs.mk
+BLOBS_ROOT=$REPO_ROOT/proprietary
+VENDOR_MAKEFILE=$REPO_ROOT/$DEVICE-vendor.mk
+BLOBS_MAKEFILE=$REPO_ROOT/$DEVICE-vendor-blobs.mk
+echo "  BLOBS_ROOT=$BLOBS_ROOT"
+echo "  VENDOR_MAKEFILE=$VENDOR_MAKEFILE"
+echo "  BLOBS_MAKEFILE=$BLOBS_MAKEFILE"
 
 # All hail the common header
 
-HEADER="# Copyright (C) 2015 ParanoidAndroid Project
+HEADER="# Copyright (C) $(date +"%Y") ParanoidAndroid Project
 #
 # Licensed under the Apache License, Version 2.0 (the \"License\");
 # you may not use this file except in compliance with the License.
@@ -32,71 +50,100 @@ HEADER="# Copyright (C) 2015 ParanoidAndroid Project
 
 # Look up the proprietary-blobs.txt file to use
 
-if [ -f proprietary-blobs.txt ]; then
-  BLOBS_TXT=proprietary-blobs.txt
-elif [ -f ../../../device/$VENDOR/$DEVICE/proprietary-blobs.txt ]; then
-  BLOBS_TXT=../../../device/$VENDOR/$DEVICE/proprietary-blobs.txt
+if [ -f $REPO_ROOT/proprietary-blobs.txt ]; then
+    BLOBS_TXT=$REPO_ROOT/proprietary-blobs.txt
+elif [ -f $REPO_ROOT/../../../device/$VENDOR/$DEVICE/proprietary-blobs.txt ]; then
+    BLOBS_TXT=$REPO_ROOT/../../../device/$VENDOR/$DEVICE/proprietary-blobs.txt
 else
-  echo ""
-  echo "    $0: missing proprietary-blobs.txt"
-  echo ""
-  echo "    A proprietary-blobs.txt file was expected either in the"
-  echo "    current working directory or in the regular device tree"
-  echo "    (device/$VENDOR/$DEVICE/) but could not be found."
-  echo ""
-  exit 1
+    echo ""
+    echo "    $SCRIPT_NAME: missing proprietary-blobs.txt"
+    echo ""
+    echo "    A proprietary-blobs.txt file was expected either in"
+    echo "    the vendor repository or in the regular device tree"
+    echo "    (device/$VENDOR/$DEVICE/) but could not be found."
+    echo ""
+    exit 1
 fi
+BLOBS_TXT=$(readlink -m $BLOBS_TXT)
+echo "# BLOBS_TXT=$BLOBS_TXT"
 
 # Check on what the source should be set to
 
 if [ $# -eq 0 ]; then
-  SOURCE=adb
+    SOURCE=adb
 elif [ $# -eq 1 ]; then
-  SOURCE=$1
+    SOURCE=$1
 else
-  echo ""
-  echo "    $0: unexpected arguments specified"
-  echo ""
-  echo "    usage: $0 [path-to-root]"
-  echo ""
-  echo "    If the path-to-root argument gets specified, it should be the"
-  echo "    absolute path to the root of the extracted device's image. If"
-  echo "    not specified, it is set as adb instead, denoting that the"
-  echo "    connected device will be the source of the files."
-  echo ""
-  exit 2
+    echo ""
+    echo "    $SCRIPT_NAME: unexpected arguments specified"
+    echo ""
+    echo "    usage: $SCRIPT_NAME [path-to-source]"
+    echo ""
+    echo "    If the path-to-source argument gets specified, it should be"
+    echo "    the absolute path to the root of the extracted device's image."
+    echo "    If not specified, it is set as adb instead, denoting that the"
+    echo "    connected device will be the source of the files."
+    echo ""
+    exit 2
+fi
+if [ $SOURCE != adb ]; then
+    SOURCE=$(readlink -m $SOURCE)
+fi
+echo "# SOURCE=$SOURCE"
+
+# Do simple initial checks before continuing
+
+if [ ! -d $BLOBS_ROOT ]; then
+    echo ""
+    echo "    $SCRIPT_NAME: missing blobs root directory"
+    echo ""
+    echo "    To continue with the current configuration, manually"
+    echo "    create ${BLOBS_ROOT}."
+    echo ""
+    exit 3
 fi
 
-# Output the setup just for verbosity
+if [ $SOURCE != adb ] && [ ! -d $SOURCE ]; then
+    echo ""
+    echo "    $SCRIPT_NAME: missing source directory"
+    echo ""
+    echo "    To continue with the current configuration, extract"
+    echo "    your device to ${SOURCE}."
+    echo ""
+    exit 4
+fi
 
-echo "# VENDOR=$VENDOR"
-echo "# DEVICE=$DEVICE"
-echo "# VENDOR_MAKEFILE=$VENDOR_MAKEFILE"
-echo "# BLOBS_MAKEFILE=$BLOBS_MAKEFILE"
-echo "# BLOBS_TXT=$BLOBS_TXT"
-echo "# SOURCE=$SOURCE"
+# Throw in a simple seperator
+
 echo ""
+
+# Make sure we really have a source
+
+if [ $SOURCE == adb ]; then
+    echo "Waiting for the connected device..."
+    adb wait-for-device
+fi
 
 # Stop preparing and start by removing all old files
 
 echo "Making old files disappear..."
-rm -rf proprietary/*
+rm -rf $BLOBS_ROOT/*
 
 # Do the real pulling and copying of files
 
 echo "Making new files appear..."
-for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///' | sort -s); do
+for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort -s); do
     # Ensure we have a target directory
     FILE_DIR=$(dirname $FILE)
-    if [ ! -d proprietary/$FILE_DIR ]; then
-        mkdir -p proprietary/$FILE_DIR
+    if [ ! -d $BLOBS_ROOT/$FILE_DIR ]; then
+        mkdir -p $BLOBS_ROOT/$FILE_DIR
     fi
 
     # Pull and copy!
     if [ "$SOURCE" = "adb" ]; then
-      adb pull -p -a $FILE proprietary/$FILE
+        adb pull -p -a $FILE $BLOBS_ROOT/$FILE
     else
-      cp $SOURCE/$FILE proprietary/$FILE
+        cp $SOURCE/$FILE $BLOBS_ROOT/$FILE
     fi
 done
 
@@ -104,30 +151,18 @@ done
 
 echo "Done with moving files. Setting up makefiles..."
 
-# Truncate the blobs makefile and put a header in it
+# Throw the bits of the blobs makefile together
 
-(cat << EOF) > $BLOBS_MAKEFILE
-$HEADER
+echo -n "$HEADER
 
-PRODUCT_COPY_FILES += \\
-EOF
-
-# Output some information about what files we expect to have
-
-COUNT=$(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///' | sort -s | wc -l) # Provide a nice counter
-LINE_END=" \\" # Provide a nice line ending
-for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^\///' | sort -s); do
-    # Check if we have reached the last line
-    COUNT=$((COUNT - 1))
-    if [ $COUNT = "0" ]; then
-        LINE_END=""
-    fi
-
-    # Do all the outputs
-    echo "    vendor/$VENDOR/$DEVICE/proprietary/$FILE:$FILE$LINE_END" >> $BLOBS_MAKEFILE
+PRODUCT_COPY_FILES +=" > $BLOBS_MAKEFILE
+for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort -s); do
+    echo -n " \\
+    vendor/$VENDOR/$DEVICE/proprietary/$FILE:$FILE" >> $BLOBS_MAKEFILE
 done
+echo "" >> $BLOBS_MAKEFILE
 
-# And finish up with a clean, generic makefile
+# Throw in a clean, generic makefile as well
 
 (cat << EOF) > $VENDOR_MAKEFILE
 $HEADER
