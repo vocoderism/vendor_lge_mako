@@ -154,7 +154,18 @@ done
 
 echo "Done with moving files. Setting up makefiles..."
 
-# Throw the bits of the blobs makefile together
+# Throw in a clean, generic makefile as soon as possible
+
+(cat << EOF) > $VENDOR_MAKEFILE
+$HEADER
+
+# An overlay for features that depend on proprietary files
+DEVICE_PACKAGE_OVERLAYS := vendor/$VENDOR/$DEVICE/overlay
+
+\$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
+EOF
+
+# Tell the builder what proprietary files we want included
 
 echo -n "$HEADER
 
@@ -165,15 +176,10 @@ for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort 
 done
 echo "" >> $BLOBS_MAKEFILE
 
-# Throw in a clean, generic makefile as well
+# Throw in an additional empty board configuration
 
-(cat << EOF) > $VENDOR_MAKEFILE
+(cat << EOF) > $REPO_ROOT/BoardConfigVendor.mk
 $HEADER
-
-# An overlay for features that depend on proprietary files
-DEVICE_PACKAGE_OVERLAYS := vendor/$VENDOR/$DEVICE/overlay
-
-\$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
 
 # Let the user know we performed well and finished nicely
