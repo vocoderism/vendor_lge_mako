@@ -11,11 +11,14 @@ echo "# DEVICE=$DEVICE"
 
 # Do a bit more generic configuration
 
-if [ -d ../../../vendor/$VENDOR/$DEVICE ]; then
-    REPO_ROOT=../../../vendor/$VENDOR/$DEVICE
-elif [ -d ../../vendor/$VENDOR/$DEVICE ]; then
-    REPO_ROOT=../../vendor/$VENDOR/$DEVICE
-else
+for ROOT in $(dirname $0) .; do
+    for MID in ../../.. ../.. .. .; do
+        if [ -d $ROOT/$MID/vendor/$VENDOR/$DEVICE ]; then
+            REPO_ROOT=$ROOT/$MID/vendor/$VENDOR/$DEVICE
+        fi
+    done
+done
+if [ -z $REPO_ROOT ]; then
     REPO_ROOT=$(dirname $0)
 fi
 REPO_ROOT=$(readlink -m $REPO_ROOT)
