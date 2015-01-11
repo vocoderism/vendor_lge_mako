@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 SCRIPT_NAME=$(basename $0)
+KERNEL_NAME=$(uname -s)
 
 # Kick off with generic configuration
 
@@ -21,7 +22,9 @@ done
 if [ -z $REPO_ROOT ]; then
     REPO_ROOT=$(dirname $0)
 fi
-REPO_ROOT=$(readlink -m $REPO_ROOT)
+if [ $KERNEL_NAME == "Linux" ]; then
+    REPO_ROOT=$(readlink -m $REPO_ROOT)
+fi
 echo "# REPO_ROOT=$REPO_ROOT"
 
 # Follow up with even more generic configuration
@@ -67,7 +70,9 @@ else
     echo ""
     exit 1
 fi
-BLOBS_TXT=$(readlink -m $BLOBS_TXT)
+if [ $KERNEL_NAME == "Linux" ]; then
+    BLOBS_TXT=$(readlink -m $BLOBS_TXT)
+fi
 echo "# BLOBS_TXT=$BLOBS_TXT"
 
 # Check on what the source should be set to
@@ -89,7 +94,7 @@ else
     echo ""
     exit 2
 fi
-if [ $SOURCE != adb ]; then
+if [ $KERNEL_NAME == "Linux" ] && [ $SOURCE != adb ]; then
     SOURCE=$(readlink -m $SOURCE)
 fi
 echo "# SOURCE=$SOURCE"
