@@ -30,11 +30,9 @@ echo "# REPO_ROOT=$REPO_ROOT"
 # Follow up with even more generic configuration
 
 BLOBS_ROOT=$REPO_ROOT/proprietary
-VENDOR_MAKEFILE=$REPO_ROOT/$DEVICE-vendor.mk
-BLOBS_MAKEFILE=$REPO_ROOT/$DEVICE-vendor-blobs.mk
+VENDOR_MAKEFILE=$REPO_ROOT/device-vendor.mk
 echo "  BLOBS_ROOT=$BLOBS_ROOT"
 echo "  VENDOR_MAKEFILE=$VENDOR_MAKEFILE"
-echo "  BLOBS_MAKEFILE=$BLOBS_MAKEFILE"
 
 # All hail the common header
 
@@ -167,19 +165,15 @@ $HEADER
 # An overlay for features that depend on proprietary files
 DEVICE_PACKAGE_OVERLAYS := vendor/$VENDOR/$DEVICE/overlay
 
-\$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
+# Builder instructions about what proprietary files to include
 EOF
 
-# Tell the builder what proprietary files we want included
-
-echo -n "$HEADER
-
-PRODUCT_COPY_FILES +=" > $BLOBS_MAKEFILE
+echo -n "PRODUCT_COPY_FILES +=" >> $VENDOR_MAKEFILE
 for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort -s); do
     echo -n " \\
-    vendor/$VENDOR/$DEVICE/proprietary/$FILE:$FILE" >> $BLOBS_MAKEFILE
+    vendor/$VENDOR/$DEVICE/proprietary/$FILE:$FILE" >> $VENDOR_MAKEFILE
 done
-echo "" >> $BLOBS_MAKEFILE
+echo "" >> $VENDOR_MAKEFILE
 
 # Throw in an additional empty board configuration
 
