@@ -1,2 +1,2 @@
 # vendor_lge_mako
-Vendor Blobs MarsMallow support
+Vendor Blobs MarshMallow support
